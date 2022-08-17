@@ -15,7 +15,7 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       healthScore: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.FLOAT,
         allowNull: false,
       },
       stepByStep: {
@@ -27,7 +27,8 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
         allowNull: false,
       },
