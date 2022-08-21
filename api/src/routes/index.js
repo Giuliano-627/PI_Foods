@@ -24,6 +24,7 @@ const getApiInfo = async () => {
       resumen: el.summary,
       healthScore: el.healthScore,
       image: el.image,
+      diets: el.diets,
       stepByStep:
         el.analyzedInstructions[0] && el.analyzedInstructions[0].steps
           ? el.analyzedInstructions[0].steps.map((item) => item.step).join("\n")
