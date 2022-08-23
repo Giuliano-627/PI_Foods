@@ -3,9 +3,10 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getRecipes } from "../actions/index";
 import { Link } from "react-router-dom";
+import { filterByDiet } from "../actions/index";
 //--------importacion de los componentes:--------------
 import Card from "./Card";
-
+import Paginado from "./Paginado";
 //---------fin de la importacion de componentes--------
 export default function Home() {
   const dispatch = useDispatch();
@@ -13,9 +14,23 @@ export default function Home() {
   const recipesToRender = useSelector((state) => state.recipesToRender);
   const allDiets = useSelector((state) => state.allDiets);
   const dietsToRender = useSelector((state) => state.dietsToRender);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [recipesPorPag, setRecipesPorPag] = useState(10);
+  const indexOfLastRecipe = currentPage * recipesPorPag;
+  const indexOfFirstRecipe = indexOfLastRecipe - recipesPorPag;
+  const currentRecipes = recipesToRender.slice(
+    indexOfFirstRecipe,
+    indexOfLastRecipe
+  );
+
   function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
+
+  const paginado = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   useEffect(() => {
     dispatch(getRecipes());
   }, [dispatch]);
@@ -27,6 +42,8 @@ export default function Home() {
 
   function handleChangeDiets(e) {
     e.preventDefault();
+    dispatch(filterByDiet(e.target.value));
+    setCurrentPage(1);
   }
 
   return (
@@ -44,7 +61,7 @@ export default function Home() {
         <option value="aToZ">A-Z</option>
         <option value="zToA">Z-A</option>
       </select>
-      <select>
+      <select onChange={(e) => handleChangeDiets(e)}>
         <option value="dietDefault">Dietas especificas</option>
         {allDiets?.map((e) => (
           <option value={e.name} key={e.id}>
@@ -53,7 +70,12 @@ export default function Home() {
         ))}
       </select>
       <button onClick={(e) => handleRecharge(e)}>Recargar las Dietas.</button>
-      {recipesToRender.map((e) => {
+      <Paginado
+        recipesPorPag={recipesPorPag}
+        recipesToRender={recipesToRender.length}
+        paginado={paginado}
+      />
+      {currentRecipes.map((e) => {
         return (
           <Fragment>
             <Card
