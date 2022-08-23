@@ -56,7 +56,7 @@ router.get("/recipes", async (req, resp) => {
   let totalRecipes = await getAllInfo();
   if (name) {
     let recipeName = await totalRecipes.filter(
-      (elem) => elem.name.toLowerCase() == name.toLowerCase()
+      (elem) => elem.name.toLowerCase().includes(name.toLowerCase())
     );
     recipeName
       ? resp.status(200).json(recipeName)
