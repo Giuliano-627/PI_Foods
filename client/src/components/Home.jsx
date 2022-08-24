@@ -7,6 +7,9 @@ import { filterByDiet } from "../actions/index";
 //--------importacion de los componentes:--------------
 import Card from "./Card";
 import Paginado from "./Paginado";
+import SearchBar from "./SearchBar";
+import { orderByHealt } from "../actions/index";
+import { orderAlph } from "../actions/index";
 //---------fin de la importacion de componentes--------
 export default function Home() {
   const dispatch = useDispatch();
@@ -22,6 +25,7 @@ export default function Home() {
     indexOfFirstRecipe,
     indexOfLastRecipe
   );
+  const [order, setOrder] = useState("");
 
   function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -44,6 +48,21 @@ export default function Home() {
     e.preventDefault();
     dispatch(filterByDiet(e.target.value));
     setCurrentPage(1);
+    setOrder(e.target.value);
+  }
+
+  function handleOrderByHealt(e) {
+    e.preventDefault();
+    dispatch(orderByHealt(e.target.value));
+    setCurrentPage(1);
+    setOrder(e.target.value);
+  }
+
+  function handleOrderAlph(e) {
+    e.preventDefault();
+    dispatch(orderAlph(e.target.value));
+    setCurrentPage(1);
+    setOrder(e.target.value);
   }
 
   return (
@@ -51,12 +70,12 @@ export default function Home() {
       <Link to="/recipeCreate">Crear una nueva receta</Link>
       <h1>Titulo del Home</h1>
       <p>Filtrar y/o ordenar:</p>
-      <select>
+      <select onChange={(e) => handleOrderByHealt(e)}>
         <option value="salDefault">Ordenar por valor de salud</option>
         <option value="salAsc">Menos saludables</option>
         <option value="salDesc">Mas saludables</option>
       </select>
-      <select>
+      <select onChange={(e) => handleOrderAlph(e)}>
         <option value="alphDefault">Ordenar alfabeticamente</option>
         <option value="aToZ">A-Z</option>
         <option value="zToA">Z-A</option>
@@ -64,9 +83,7 @@ export default function Home() {
       <select onChange={(e) => handleChangeDiets(e)}>
         <option value="dietDefault">Dietas especificas</option>
         {allDiets?.map((e) => (
-          <option value={e.name} key={e.id}>
-            {e.name}
-          </option>
+          <option value={e.name}>{e.name}</option>
         ))}
       </select>
       <button onClick={(e) => handleRecharge(e)}>Recargar las Dietas.</button>
@@ -75,6 +92,7 @@ export default function Home() {
         recipesToRender={recipesToRender.length}
         paginado={paginado}
       />
+      <SearchBar />
       {currentRecipes.map((e) => {
         return (
           <Fragment>
@@ -82,6 +100,7 @@ export default function Home() {
               image={e.image}
               name={e.name}
               dieta={e.diets.map((el) => " " + capitalizeFirstLetter(el) + ".")}
+              healthScore={e.healthScore}
               id={e.id}
             />
           </Fragment>

@@ -10,7 +10,7 @@ export default function Paginado({ recipesPorPag, recipesToRender, paginado }) {
     <nav>
       <ul>
         {pageNumbers.map((number) => (
-          <li>
+          <li key={number}>
             <a onClick={() => paginado(number)}>{number}</a>
           </li>
         ))}
