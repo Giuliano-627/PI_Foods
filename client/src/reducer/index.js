@@ -43,22 +43,22 @@ function rootReducer(state = initialState, action) {
         recipesToRender: action.payload,
       };
     case "ORDER_BY_HEALT":
-      let rec;
       switch (action.payload) {
         case "salAsc":
-          rec = state.recipesToRender.sort((a, b) => {
+          state.recipesToRender.sort((a, b) => {
             if (a.healthScore > b.healthScore) return 1;
             if (b.healthScore > a.healthScore) return -1;
             return 0;
           });
           break;
         case "salDesc":
-          rec = state.recipesToRender.sort((a, b) => {
+          state.recipesToRender.sort((a, b) => {
             if (a.healthScore > b.healthScore) return -1;
             if (b.healthScore > a.healthScore) return 1;
             return 0;
           });
           break;
+          default: break
       }
     case "ORDER_BY_ALPH":
       let order;

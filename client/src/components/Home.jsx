@@ -101,8 +101,8 @@ export default function Home() {
               name={e.name}
               dieta={
                 typeof( e.diets[0]) !== "object"
-                  ? e.diets.map((el) => " " + el + ".")
-                  : e.diets.map((el) => " " + el.name + ".")
+                  ? e.diets.map((el) => " " + capitalizeFirstLetter(el) + ".")
+                  : e.diets.map((el) => " " + capitalizeFirstLetter(el.name) + ".")
               }
               healthScore={e.healthScore}
               id={e.id}

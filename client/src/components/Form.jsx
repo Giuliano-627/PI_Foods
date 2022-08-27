@@ -18,18 +18,41 @@ export function Form() {
     diets: [],
     createdInDB: true,
   });
+
+  function handleDelete(e) {
+    setInput({
+      ...input,
+      diets: input.diets.filter((d) => d !== e),
+    });
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(post_recipe(input));
-    setInput({
-      name: "",
-      resumen: "",
-      healthScore: "",
-      stepByStep: "",
-      image: "",
-      diets: [],
-      createdInDB: true,
-    });
+    if (
+      input.name.length < 1 ||
+      input.resumen.length < 1 ||
+      input.stepByStep.length < 1 ||
+      input.image.length < 1 ||
+      input.healthScore < 0 ||
+      input.healthScore > 100 ||
+      !input.diets.length
+    ) {
+      alert(
+        "Todos los campos deben estar completos, 'HealtScore' debe estar entre 0 y 100 y debe haber al menos 1 dieta."
+      );
+    } else {
+      dispatch(post_recipe(input));
+      setInput({
+        name: "",
+        resumen: "",
+        healthScore: "",
+        stepByStep: "",
+        image: "",
+        diets: [],
+        createdInDB: true,
+      });
+      history.push("/home");
+    }
   }
   function handleChange(e) {
     setInput({
@@ -38,11 +61,13 @@ export function Form() {
     });
     console.log("INPUT:", input);
   }
-  function handleSelect(e){
-    setInput({
-      ...input,
-      diets: [...input.diets, e.target.value]
-    })
+  function handleSelect(e) {
+    if (e.target.value !== "disabled") {
+      setInput({
+        ...input,
+        diets: [...input.diets, e.target.value],
+      });
+    }
   }
   useEffect(() => {
     dispatch(getDiets());
@@ -64,7 +89,7 @@ export function Form() {
           />
         </div>
         <div>
-          <label>Puntuacion segun saludable:</label>
+          <label>Puntuacion segun valor de salud:</label>
           <input
             type="number"
             name="healthScore"
@@ -100,7 +125,7 @@ export function Form() {
           </div>
         </div>
         <div>
-          <select onChange={e=>handleSelect(e)}>
+          <select onChange={(e) => handleSelect(e)}>
             <option required value="disabled">
               Dietas
             </option>
@@ -110,10 +135,15 @@ export function Form() {
               </option>
             ))}
           </select>
-          <ul><li>{input.diets.map(el => el + " ,")}</li></ul>
         </div>
         <button type="submit">Crear receta</button>
-      </form>
+        </form>
+        {input.diets.map((el) =>
+        <div>
+        <p>{el + " ,"}</p>
+        <button onClick={()=>handleDelete(el)}>X</button>
+        </div> 
+        )}
     </div>
   );
 }
