@@ -141,10 +141,15 @@ router.post("/recipes", async (req, resp) => {
     let dietaDB = await Diets.findAll({
       where: { name: diets },
     });
-    console.log("DIETADB=",dietaDB)
-
-    createRecipe.addDiet(dietaDB)
-    resp.send("Receta creada");
+    console.log("DIETADB=", dietaDB);
+    if (!name || !resumen || !healthScore || !stepByStep || !image) {
+      return resp
+        .status(400)
+        .send({ error: "Falta al menos 1 dato sobre la receta" });
+    } else {
+      createRecipe.addDiet(dietaDB);
+      resp.send("Receta creada");
+    }
   } catch (error) {
     console.log("ERROR AL CREAR RECETA:", error);
   }
