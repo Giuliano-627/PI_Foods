@@ -80,10 +80,19 @@ function rootReducer(state = initialState, action) {
         ...state,
         dogs: order,
       };
+    case "POST_RECIPE":
+      return {
+        ...state,
+      };
     case "GET_DETAILS":
       return {
         ...state,
         details: action.payload,
+      };
+    case "GET_DIETS":
+      return {
+        ...state,
+        dietsToRender: action.payload,
       };
     default:
       return state;

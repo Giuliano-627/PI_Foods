@@ -58,3 +58,21 @@ export function get_details(id) {
     }
   };
 }
+
+export function post_recipe(payload) {
+  return async function (dispatch) {
+    console.log("a punto de postear:",payload)
+    const response = await axios.post("http://localhost:3001/recipes", payload);
+    return response;
+  };
+}
+
+export function getDiets(payload) {
+  return async function (dispatch) {
+    let info = await axios.get("http://localhost:3001/diets", {});
+    return dispatch({
+      type: "GET_DIETS",
+      payload: info.data,
+    });
+  };
+}

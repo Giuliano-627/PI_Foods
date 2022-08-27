@@ -28,14 +28,12 @@ export default function Detail(props) {
           <h2>Puntaje de salud: {recipes.healthScore}</h2>
           <h2>
             Dietas:{" "}
-            {recipes.diets.map((el) => " " + capitalizeFirstLetter(el) + ".")}
+            {typeof recipes.diets[0] !== "object"
+              ? recipes.diets.map((el) => " " + el + ".")
+              : recipes.diets.map((el) => " " + el.name + ".")}
           </h2>
-          <p
-            dangerouslySetInnerHTML={{
-              __html: recipes.resumen,
-            }}
-          />
-          <hr/>
+          <p dangerouslySetInnerHTML={{ __html: recipes.resumen }} />
+          <hr />
           <h3>Elaboracion paso a paso:</h3>
           <h3> {recipes.stepByStep}</h3>
         </div>

@@ -1,7 +1,7 @@
 require("dotenv").config();
 const axios = require("axios");
 const { Router } = require("express");
-const { Dieta, Recipe } = require("../db.js");
+const { Diets, Recipe } = require("../db.js");
 const router = Router();
 
 //------------------Aqui nos definimos la url en base a la API_Key que esta en .env--------------------
@@ -11,7 +11,6 @@ const url =
   "https://api.spoonacular.com/recipes/complexSearch?apiKey=" +
   API_KEY +
   "&addRecipeInformation=true&number=100";
-//console.log("API_KEY=",API_KEY)
 
 //----------------------------Aqui nos traemos los datos desde la api------------------------------
 
@@ -37,7 +36,7 @@ const getApiInfo = async () => {
 const getDbInfo = async () => {
   return await Recipe.findAll({
     include: {
-      model: Dieta,
+      model: Diets,
       attributes: ["name"],
       throught: { interTab: [] },
     },
@@ -47,7 +46,6 @@ const getDbInfo = async () => {
 const getAllInfo = async () => {
   const apiInfo = await getApiInfo();
   const dbInfo = await getDbInfo();
-  console.log("Data base info:", dbInfo);
   return apiInfo.concat(dbInfo);
 };
 //----------------Aqui hacemos el get a recipes con o sin parametros por query--------------
@@ -55,8 +53,8 @@ router.get("/recipes", async (req, resp) => {
   const name = req.query.name; //lo que venga en ?name=
   let totalRecipes = await getAllInfo();
   if (name) {
-    let recipeName = await totalRecipes.filter(
-      (elem) => elem.name.toLowerCase().includes(name.toLowerCase())
+    let recipeName = await totalRecipes.filter((elem) =>
+      elem.name.toLowerCase().includes(name.toLowerCase())
     );
     recipeName
       ? resp.status(200).json(recipeName)
@@ -114,14 +112,14 @@ router.get("/diets", async (req, resp) => {
     },
   ];
   diets.map((el) => {
-    Dieta.findOrCreate({
+    Diets.findOrCreate({
       where: {
         name: el.name,
       },
     });
   });
   try {
-    let name = await Dieta.findAll();
+    let name = await Diets.findAll();
     resp.status(200).send(name);
   } catch (error) {
     return resp.status(400).send("Dietas no encontradas");
@@ -129,7 +127,8 @@ router.get("/diets", async (req, resp) => {
 });
 
 router.post("/recipes", async (req, resp) => {
-  const { name, resumen, healthScore, stepByStep, image, diets } = req.body;
+  let { name, resumen, healthScore, stepByStep, image, diets, createdInDB } =
+    req.body;
   try {
     let createRecipe = await Recipe.create({
       name,
@@ -137,21 +136,15 @@ router.post("/recipes", async (req, resp) => {
       healthScore,
       stepByStep,
       image,
-      diets,
+      createdInDB,
     });
-    let dietaDB = await Dieta.findAll({
+    let dietaDB = await Diets.findAll({
       where: { name: diets },
     });
-    if (!name)
-      return resp
-        .status(404)
-        .send({ error: "Debe ingresar un nombre para la receta" });
-    if (!resumen)
-      return resp
-        .status(404)
-        .send({ error: "Debe ingresar un resumen de la receta" });
-    createRecipe.addDieta(dietaDB);
-    resp.sendStatus(200).send("Dieta creada");
+    console.log("DIETADB=",dietaDB)
+
+    createRecipe.addDiet(dietaDB)
+    resp.send("Receta creada");
   } catch (error) {
     console.log("ERROR AL CREAR RECETA:", error);
   }

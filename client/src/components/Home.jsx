@@ -99,7 +99,11 @@ export default function Home() {
             <Card
               image={e.image}
               name={e.name}
-              dieta={e.diets.map((el) => " " + capitalizeFirstLetter(el) + ".")}
+              dieta={
+                typeof( e.diets[0]) !== "object"
+                  ? e.diets.map((el) => " " + el + ".")
+                  : e.diets.map((el) => " " + el.name + ".")
+              }
               healthScore={e.healthScore}
               id={e.id}
             />

@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       image: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(100000),
         allowNull: false,
       },
       id: {
@@ -32,10 +32,10 @@ module.exports = (sequelize) => {
         primaryKey: true,
         allowNull: false,
       },
-      createdInDB:{
+      createdInDB: {
         type: DataTypes.BOOLEAN,
-        allowNull:false,
-      }
+        allowNull: false,
+      },
     },
     {
       timestamps: false /* le saca el createAt y Updateat*/,
