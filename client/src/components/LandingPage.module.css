@@ -1,0 +1,54 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+body {
+  background-image: url("../files/bckgrd.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: 100% 100%;
+}
+.btn {
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  line-height: 16px;
+  padding: 6px;
+  border-radius: 10px;
+  font-family: Georgia, serif;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  background-image: linear-gradient(
+    to right,
+    rgb(28, 110, 164) 0%,
+    rgb(35, 136, 203) 50%,
+    rgb(20, 78, 117) 100%
+  );
+  box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px;
+  border: 2px solid rgb(28, 110, 164);
+  display: inline-block;
+}
+.btn:hover {
+  background: #ffd700;
+}
+.title {
+  color: #7c1ea4;
+  color: -moz-linear-gradient(left, #7c1ea4 0%, #2388cb 50%, #7c1ea4 100%);
+  color: -webkit-linear-gradient(left, #7c1ea4 0%, #2388cb 50%, #7c1ea4 100%);
+  color: linear-gradient(to right, #7c1ea4 0%, #2388cb 50%, #7c1ea4 100%);
+  width: 500px;
+  text-align: center;
+  padding-left: 0px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.creditos {
+  padding-top: 20px;
+  text-shadow: 2px 2px 0 #4074b5, 2px -2px 0 #4074b5, -2px 2px 0 #4074b5,
+    -2px -2px 0 #4074b5, 2px 0px 0 #4074b5, 0px 2px 0 #4074b5,
+    -2px 0px 0 #4074b5, 0px -2px 0 #4074b5, 2px 2px 3px rgba(112, 206, 68, 0);
+}

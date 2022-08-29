@@ -1,0 +1,73 @@
+.reloadBtn {
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  line-height: 16px;
+  padding: 6px;
+  border-radius: 10px;
+  font-family: Georgia, serif;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  background-image: linear-gradient(
+    to right,
+    rgb(215, 221, 29) 0%,
+    rgb(161, 165, 22) 50%,
+    rgb(215, 221, 29) 100%
+  );
+  box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px;
+  border: 2px solid rgb(28, 110, 164);
+  display: inline-block;
+}
+
+.reloadBtn:hover {
+  border-color: aqua;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #49ff18,
+    0 0 30px #49ff18, 0 0 40px #49ff18, 0 0 55px #49ff18, 0 0 75px #49ff18;
+  background: cadetblue;
+  color: rgb(215, 221, 29);
+}
+h1 {
+  border-color: aqua;
+  border-width: 2rem;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #49ff18,
+    0 0 30px #49ff18, 0 0 40px #49ff18, 0 0 55px #49ff18, 0 0 75px #49ff18;
+  background-color: transparent;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 250px);
+  background-color: rgba(28, 110, 164, 0.43);
+}
+.createRecipe {
+  font-size: 25px;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  line-height: 16px;
+  padding: 6px;
+  border-radius: 10px;
+  font-family: Georgia, serif;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  background-image: linear-gradient(
+    to right,
+    rgb(28, 110, 164) 0%,
+    rgb(35, 136, 203) 50%,
+    rgb(20, 78, 117) 100%
+  );
+  box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px;
+  border: 2px solid rgb(28, 110, 164);
+  display: inline-block;
+  margin-top: 10px;
+}
+.fyo{
+  font-size: 20px;
+}
+select{
+  font-family: cursive;
+  font-size: 17.5px;
+}

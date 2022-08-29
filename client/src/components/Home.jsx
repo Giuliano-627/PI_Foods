@@ -10,6 +10,7 @@ import Paginado from "./Paginado";
 import SearchBar from "./SearchBar";
 import { orderByHealt } from "../actions/index";
 import { orderAlph } from "../actions/index";
+import style from "./Home.module.css";
 //---------fin de la importacion de componentes--------
 export default function Home() {
   const dispatch = useDispatch();
@@ -67,9 +68,9 @@ export default function Home() {
 
   return (
     <div>
-      <Link to="/recipeCreate">Crear una nueva receta</Link>
-      <h1>Titulo del Home</h1>
-      <p>Filtrar y/o ordenar:</p>
+      <Link className={style.createRecipe} to="/recipeCreate">Crear una nueva receta</Link>
+      <h1>Recetas, gratis y de calidad</h1>
+      <p className={style.fyo}><strong>Ordenar y/o filtrar:</strong></p>
       <select onChange={(e) => handleOrderByHealt(e)}>
         <option value="salDefault">Ordenar por valor de salud</option>
         <option value="salAsc">Menos saludables</option>
@@ -86,30 +87,36 @@ export default function Home() {
           <option value={e.name}>{e.name}</option>
         ))}
       </select>
-      <button onClick={(e) => handleRecharge(e)}>Recargar las Dietas.</button>
+      <button className={style.reloadBtn} onClick={(e) => handleRecharge(e)}>
+        Recargar las Dietas.
+      </button>
       <Paginado
         recipesPorPag={recipesPorPag}
         recipesToRender={recipesToRender.length}
         paginado={paginado}
       />
       <SearchBar />
-      {currentRecipes.map((e) => {
-        return (
-          <Fragment>
-            <Card
-              image={e.image}
-              name={e.name}
-              dieta={
-                typeof( e.diets[0]) !== "object"
-                  ? e.diets.map((el) => " " + capitalizeFirstLetter(el) + ".")
-                  : e.diets.map((el) => " " + capitalizeFirstLetter(el.name) + ".")
-              }
-              healthScore={e.healthScore}
-              id={e.id}
-            />
-          </Fragment>
-        );
-      })}
+      <div className={style.cards}>
+        {currentRecipes.map((e) => {
+          return (
+            <Fragment>
+              <Card
+                image={e.image}
+                name={e.name}
+                dieta={
+                  typeof e.diets[0] !== "object"
+                    ? e.diets.map((el) => " " + capitalizeFirstLetter(el) + ".")
+                    : e.diets.map(
+                        (el) => " " + capitalizeFirstLetter(el.name) + "."
+                      )
+                }
+                healthScore={e.healthScore}
+                id={e.id}
+              />
+            </Fragment>
+          );
+        })}
+      </div>
     </div>
   );
 }
