@@ -38,7 +38,7 @@ h1 {
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, 250px);
-  background-color: rgba(28, 110, 164, 0.43);
+  background-color: rgba(28, 110, 164, 0.0);
 }
 .createRecipe {
   font-size: 25px;
@@ -70,4 +70,9 @@ h1 {
 select{
   font-family: cursive;
   font-size: 17.5px;
+}
+
+.search{
+  padding-top: 20px;
+  height: 50px;
 }

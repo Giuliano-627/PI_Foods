@@ -58,7 +58,8 @@ function rootReducer(state = initialState, action) {
             return 0;
           });
           break;
-          default: break
+        default:
+          break;
       }
     case "ORDER_BY_ALPH":
       let order;

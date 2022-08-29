@@ -1,0 +1,41 @@
+.search {
+  position: absolute;
+  left: 50%;
+  height: 35px;
+  border-radius: 40px;
+  padding: 10px;
+  padding-bottom: 15px;
+  transform: translate(-50%, -50%);
+  background: #2f3640;
+}
+.btn {
+  border-radius: 50%;
+  background-color: #2471a3;
+  color: #2471a3;
+  float: right;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  content: url("../files/lupa.png");
+}
+.text {
+  border: none;
+  background: none;
+  outline: none;
+  float: left;
+  padding: 0;
+  color: #fff;
+  font-size: 16px;
+  transition: 0.6s;
+  line-height: 40px;
+  width: 0px;
+}
+.search:hover > .text {
+  width: 350px;
+  padding: 0 5px;
+  transition: 0.4s;
+}

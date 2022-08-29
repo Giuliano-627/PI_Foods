@@ -19,7 +19,7 @@ export default function Home() {
   const allDiets = useSelector((state) => state.allDiets);
   const dietsToRender = useSelector((state) => state.dietsToRender);
   const [currentPage, setCurrentPage] = useState(1);
-  const [recipesPorPag, setRecipesPorPag] = useState(10);
+  const [recipesPorPag, setRecipesPorPag] = useState(9);
   const indexOfLastRecipe = currentPage * recipesPorPag;
   const indexOfFirstRecipe = indexOfLastRecipe - recipesPorPag;
   const currentRecipes = recipesToRender.slice(
@@ -95,7 +95,9 @@ export default function Home() {
         recipesToRender={recipesToRender.length}
         paginado={paginado}
       />
+      <div className={style.search}>
       <SearchBar />
+      </div>
       <div className={style.cards}>
         {currentRecipes.map((e) => {
           return (

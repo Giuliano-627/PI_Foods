@@ -1,18 +1,32 @@
 .card {
-    margin-top: 10px;
-    margin-bottom: 50px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    transition: 0.3s;
-    height: 450px;
-    width: 250px;
-    border-radius: 3px;
-    border-color:gold
-  }
-  .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-    padding-bottom: 10px;
-    padding-right: 10px;
-  }
-  .cardImg:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  }
+  margin-top: 10px;
+  margin-bottom: 50px;
+  /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0);*/
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 1);
+  border-color: black;
+  transition: 0.2s;
+  height: 450px;
+  width: 250px;
+  border-radius: 3px;
+  border-color: gold;
+  font-family: Georgia, serif;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+}
+.card:hover {
+  box-shadow: 4px 4px 8px 8px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(14px);
+  border-radius: 2px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+}
+.name{
+  color: white;
+    text-shadow: 2px 2px 0 #4074b5, 2px -2px 0 #4074b5, -2px 2px 0 #4074b5,
+      -2px -2px 0 #4074b5, 2px 0px 0 #4074b5, 0px 2px 0 #4074b5,
+      -2px 0px 0 #4074b5, 0px -2px 0 #4074b5, 2px 2px 2px rgba(206, 89, 55, 0);
+ 
+}
