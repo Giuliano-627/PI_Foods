@@ -94,6 +94,7 @@ export default function Home() {
         recipesPorPag={recipesPorPag}
         recipesToRender={recipesToRender.length}
         paginado={paginado}
+        currentPag={currentPage}
       />
       <div className={style.search}>
       <SearchBar />
