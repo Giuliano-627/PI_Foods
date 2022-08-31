@@ -1,0 +1,45 @@
+input {
+  height: auto;
+  border: solid 1px #ccc
+}
+input:focus{
+    border-color: #18A383;
+}
+label {
+  font-family: sans-serif;
+}
+.form {
+  width: 300px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 10px;
+  color: blue;
+  border-radius: 5px;
+}
+.goBack {
+  border-radius: 50%;
+  display: inline-block;
+  padding: 20px 15px;
+  text-decoration: none;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  color:white;
+  background-color: #3CC93F;
+}
+.goBack:hover{
+    background-color: #37b839;
+}
+.btnSubmit{
+    border-radius: 50%;
+    display: inline-block;
+    padding: 20px 15px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    color:black;
+    background-color: aqua;  
+}
+
+.inputLarge{
+    padding: 10px;
+}

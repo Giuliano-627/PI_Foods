@@ -1,7 +1,8 @@
 .list {
   list-style: none;
   font-size: 1.5rem;
-  display: inline;
+  display: inline-flex;
+  align-items: center;
   padding-left: 10px;
   color: white;
   text-shadow: 2px 2px 0 #4074b5, 2px -2px 0 #4074b5, -2px 2px 0 #4074b5,
@@ -18,10 +19,7 @@
   border-radius: 50%;
   background-color: #2471a3;
   color: #2471a3;
-  margin-left: 48%;
   display: flex;
-  justify-content: center;
-  align-items: center;
   width: 45px;
   height: 40px;
   content: url("../files/anterior.png");
@@ -31,12 +29,9 @@
 }
 .sig {
   border-radius: 50%;
-  background-color: #2471a3;
   color: #2471a3;
-  margin-left: 48%;
+  background-color: #2471a3;
   display: flex;
-  justify-content: center;
-  align-items: center;
   width: 45px;
   height: 40px;
   content: url("../files/proximo.png");
@@ -50,4 +45,11 @@
   background-color: aqua;
   font-size: 25px;
   width: 60px;
+}
+.buttons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+
 }

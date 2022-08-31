@@ -61,6 +61,7 @@ function rootReducer(state = initialState, action) {
         default:
           break;
       }
+      break;
     case "ORDER_BY_ALPH":
       let order;
       if (action.payload === "zToA") {

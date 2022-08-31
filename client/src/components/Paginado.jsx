@@ -25,7 +25,7 @@ export default function Paginado({
           </li>
         ))}
       </ul>
-      <div>
+      <div className={style.buttons}>
         <button
           className={style.ant}
           onClick={() => paginadoFlecha(currentPag - 1)}

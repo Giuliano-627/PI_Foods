@@ -20,6 +20,9 @@ export function getRecipesName(name) {
   return async function (dispatch) {
     try {
       let json = await axios.get("http://localhost:3001/recipes?name=" + name);
+      if(!json.data.length){
+        alert("No hay recetas para mostrar");
+      }
       return dispatch({
         type: "GET_RECIPES_NAME",
         payload: json.data,

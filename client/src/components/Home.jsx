@@ -14,10 +14,8 @@ import style from "./Home.module.css";
 //---------fin de la importacion de componentes--------
 export default function Home() {
   const dispatch = useDispatch();
-  const allRecipes = useSelector((state) => state.allRecipes);
   const recipesToRender = useSelector((state) => state.recipesToRender);
   const allDiets = useSelector((state) => state.allDiets);
-  const dietsToRender = useSelector((state) => state.dietsToRender);
   const [currentPage, setCurrentPage] = useState(1);
   const [recipesPorPag, setRecipesPorPag] = useState(9);
   const indexOfLastRecipe = currentPage * recipesPorPag;

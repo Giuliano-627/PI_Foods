@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { post_recipe, getDiets } from "../actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+import style from "./Form.module.css"
 
 export function Form() {
   const dispatch = useDispatch();
@@ -75,11 +76,11 @@ export function Form() {
   return (
     <div>
       <Link to="/home">
-        <button>Volver</button>
+        <button className={style.goBack}>Volver</button>
       </Link>
       <h1>Crea tu propia receta</h1>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <div>
+      <form className={style.form} onSubmit={(e) => handleSubmit(e)}>
+        <div className={style.name}>
           <label>Nombre:</label>
           <input
             type="text"
@@ -107,7 +108,7 @@ export function Form() {
           </div>
           <div>
             <label>Resumen:</label>
-            <input
+            <input className={style.inputLarge}
               type="text"
               value={input.resumen}
               onChange={handleChange}
@@ -116,7 +117,7 @@ export function Form() {
           </div>
           <div>
             <label>Paso a paso:</label>
-            <input
+            <input className={style.inputLarge}
               type="text"
               value={input.stepByStep}
               onChange={handleChange}
@@ -125,7 +126,7 @@ export function Form() {
           </div>
         </div>
         <div>
-          <select onChange={(e) => handleSelect(e)}>
+          <select className={style.select} onChange={(e) => handleSelect(e)}>
             <option required value="disabled">
               Dietas
             </option>
@@ -136,12 +137,12 @@ export function Form() {
             ))}
           </select>
         </div>
-        <button type="submit">Crear receta</button>
+        <button className={style.btnSubmit} type="submit">Crear receta</button>
         </form>
         {input.diets.map((el) =>
-        <div>
-        <p>{el + " ,"}</p>
-        <button onClick={()=>handleDelete(el)}>X</button>
+        <div className={style.dietas} >
+        <p className={style.dieta}>{el + " ,"}</p>
+        <button className={style.btnDelete} onClick={()=>handleDelete(el)}>X</button>
         </div> 
         )}
     </div>
