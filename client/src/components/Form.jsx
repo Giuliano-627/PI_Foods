@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { post_recipe, getDiets } from "../actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import style from "./Form.module.css"
+import style from "./Form.module.css";
 
 export function Form() {
   const dispatch = useDispatch();
@@ -64,10 +64,15 @@ export function Form() {
   }
   function handleSelect(e) {
     if (e.target.value !== "disabled") {
-      setInput({
-        ...input,
-        diets: [...input.diets, e.target.value],
-      });
+      if (input.diets.includes(e.target.value)) {
+        alert("esa dieta ya estaba incluida")
+        return null
+      } else {
+        setInput({
+          ...input,
+          diets: [...input.diets, e.target.value],
+        });
+      }
     }
   }
   useEffect(() => {
@@ -108,7 +113,8 @@ export function Form() {
           </div>
           <div>
             <label>Resumen:</label>
-            <input className={style.inputLarge}
+            <input
+              className={style.inputLarge}
               type="text"
               value={input.resumen}
               onChange={handleChange}
@@ -117,7 +123,8 @@ export function Form() {
           </div>
           <div>
             <label>Paso a paso:</label>
-            <input className={style.inputLarge}
+            <input
+              className={style.inputLarge}
               type="text"
               value={input.stepByStep}
               onChange={handleChange}
@@ -127,7 +134,7 @@ export function Form() {
         </div>
         <div>
           <select className={style.select} onChange={(e) => handleSelect(e)}>
-            <option required value="disabled">
+            <option disabled value="disabled">
               Dietas
             </option>
             {diets.map((d) => (
@@ -137,14 +144,18 @@ export function Form() {
             ))}
           </select>
         </div>
-        <button className={style.btnSubmit} type="submit">Crear receta</button>
-        </form>
-        {input.diets.map((el) =>
-        <div className={style.dietas} >
-        <p className={style.dieta}>{el + " ,"}</p>
-        <button className={style.btnDelete} onClick={()=>handleDelete(el)}>X</button>
-        </div> 
-        )}
+        <button className={style.btnSubmit} type="submit">
+          Crear receta
+        </button>
+      </form>
+      {input.diets.map((el) => (
+        <div className={style.dietas}>
+          <p className={style.dieta}>{el + " ,"}</p>
+          <button className={style.btnDelete} onClick={() => handleDelete(el)}>
+            X
+          </button>
+        </div>
+      ))}
     </div>
   );
 }
