@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { post_recipe, getDiets } from "../actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import style from "./Form.module.css"
+import style from "./Form.module.css";
 
 export function Form() {
   const dispatch = useDispatch();
@@ -56,11 +56,15 @@ export function Form() {
     }
   }
   function handleChange(e) {
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value,
-    });
-    console.log("INPUT:", input);
+    if (input.diets.includes(e.target.value)) {
+      alert("Esa dieta ya fue seleccionada");
+    } else {
+      setInput({
+        ...input,
+        [e.target.name]: e.target.value,
+      });
+      console.log("INPUT:", input);
+    }
   }
   function handleSelect(e) {
     if (e.target.value !== "disabled") {
@@ -108,7 +112,8 @@ export function Form() {
           </div>
           <div>
             <label>Resumen:</label>
-            <input className={style.inputLarge}
+            <input
+              className={style.inputLarge}
               type="text"
               value={input.resumen}
               onChange={handleChange}
@@ -117,7 +122,8 @@ export function Form() {
           </div>
           <div>
             <label>Paso a paso:</label>
-            <input className={style.inputLarge}
+            <input
+              className={style.inputLarge}
               type="text"
               value={input.stepByStep}
               onChange={handleChange}
@@ -137,14 +143,18 @@ export function Form() {
             ))}
           </select>
         </div>
-        <button className={style.btnSubmit} type="submit">Crear receta</button>
-        </form>
-        {input.diets.map((el) =>
-        <div className={style.dietas} >
-        <p className={style.dieta}>{el + " ,"}</p>
-        <button className={style.btnDelete} onClick={()=>handleDelete(el)}>X</button>
-        </div> 
-        )}
+        <button className={style.btnSubmit} type="submit">
+          Crear receta
+        </button>
+      </form>
+      {input.diets.map((el) => (
+        <div className={style.dietas}>
+          <p className={style.dieta}>{el + " ,"}</p>
+          <button className={style.btnDelete} onClick={() => handleDelete(el)}>
+            X
+          </button>
+        </div>
+      ))}
     </div>
   );
 }
